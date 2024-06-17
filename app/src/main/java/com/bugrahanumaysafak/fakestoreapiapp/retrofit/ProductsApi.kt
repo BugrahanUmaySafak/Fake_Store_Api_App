@@ -1,7 +1,6 @@
 package com.bugrahanumaysafak.fakestoreapiapp.retrofit
 
 import com.bugrahanumaysafak.fakestoreapiapp.entity.ProductsResponseItem
-import com.bugrahanumaysafak.fakestoreapiapp.entity.Rating
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
