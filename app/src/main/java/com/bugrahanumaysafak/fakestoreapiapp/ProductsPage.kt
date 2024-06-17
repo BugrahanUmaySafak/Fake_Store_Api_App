@@ -69,7 +69,7 @@ fun ProductsPage(navController: NavHostController) {
             Text(text = result.message)
         }
         NetworkResponse.Loading -> {
-            CircularProgressIndicator()
+            LoadingScreen()
         }
         is NetworkResponse.Success -> {
 
@@ -246,5 +246,14 @@ fun ProductsPage(navController: NavHostController) {
     }
 }
 
+@Composable
+fun LoadingScreen() {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        CircularProgressIndicator()
+    }
+}
 
 
