@@ -3,21 +3,19 @@ package com.bugrahanumaysafak.fakestoreapiapp.entity
 import com.google.gson.annotations.SerializedName
 
 data class Rating(
-
 	@field:SerializedName("rate")
-	val rate: Any? = null,
+	val rate: Double? = null,
 
 	@field:SerializedName("count")
 	val count: Int? = null
 )
 
 data class ProductsResponseItem(
-
 	@field:SerializedName("image")
 	val image: String? = null,
 
 	@field:SerializedName("price")
-	val price: Any? = null,
+	val price: Double? = null,
 
 	@field:SerializedName("rating")
 	val rating: Rating? = null,

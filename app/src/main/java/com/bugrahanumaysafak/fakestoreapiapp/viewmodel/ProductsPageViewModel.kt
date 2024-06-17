@@ -15,6 +15,9 @@ class ProductsPageViewModel : ViewModel() {
     private val _productsResult = MutableLiveData<NetworkResponse<List<ProductsResponseItem>>>()
     val productsResult: LiveData<NetworkResponse<List<ProductsResponseItem>>> = _productsResult
 
+    private val _deleteResult = MutableLiveData<NetworkResponse<Unit>>()
+    val deleteResult: LiveData<NetworkResponse<Unit>> = _deleteResult
+
     fun getData() {
         _productsResult.value = NetworkResponse.Loading
 
@@ -30,6 +33,23 @@ class ProductsPageViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _productsResult.value = NetworkResponse.Error("Exception: ${e.message}")
+            }
+        }
+    }
+
+    fun deleteProduct(id: Int) {
+        viewModelScope.launch {
+            _deleteResult.value = NetworkResponse.Loading
+            try {
+                val response = productApi.deleteProducts(id)
+                if (response.isSuccessful) {
+                    _deleteResult.value = NetworkResponse.Success(Unit)
+                    getData()
+                } else {
+                    _deleteResult.value = NetworkResponse.Error("Error: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                _deleteResult.value = NetworkResponse.Error("Exception: ${e.message}")
             }
         }
     }
